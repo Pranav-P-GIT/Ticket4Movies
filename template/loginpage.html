@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>login</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/log.css' %}">
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Ticket4Movies</div>
+        <ul class="nav-links">
+            <div class="menu">
+                <li><a href="{% url 'registerpage' %}">REGISTER</a></li>
+                <li><a href="{% url 'homepage' %}">HOME</a></li>
+                
+            </div>
+        </ul>
+    </nav>
+
+
+
+
+    <form action="{% url 'loginpage' %}" method="post">
+        {% csrf_token %}
+        <center>
+            <div class="form">
+                <h3 style="color:Red;">{{msg}}</h3><br>
+                <h1>Log In to Your Account </h1><br>
+                <label for="uname"><b>Username</b></label><br>
+                <input type="text" placeholder="Enter Username" name="uname" id="uname" required><br>
+                <label for="psw"><b>Password</b></label><br>
+                <input type="password" placeholder="Enter Password" name="psw" id="psw" required><br>
+                <span class="psw">Forgot password?</span><br><br>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label><br><br>
+                <button type="submit" class="loginbtn">Log In</button>
+                
+            </div>
+        </center>
+    </form>
+
+
+    
+    <div class="footer-basic">
+        <footer>
+            
+            <div class="social">
+                <h4>FOLLOW</h4><br>
+                <a href="#">
+                    <i class="icon ion-social-instagram">
+                        <img class="imge" src="{% static 'img/ig-instagram-icon.png' %}" alt="">
+                    </i>
+                </a>
+                <a href="#">
+                    <i class="icon ion-social-snapchat">
+                        <img class="imge" src="{% static 'img/wa-whatsapp-icon.png' %}" alt="">
+                    </i>
+                </a>
+                <a href="#">
+                    <i class="icon ion-social-twitter">
+                        <img class="imge" src="{% static 'img/twitter-app-icon.png' %}" alt="">
+                    </i>
+                </a>
+                <a href="#">
+                    <i class="icon ion-social-facebook">
+                        <img class="imge" src="{% static 'img/facebook-app-icon.png' %}" alt="">
+                    </i>
+                </a>
+            </div>
+            <p style="text-align: center;">Tickets4Movies | one of the prominent film festival booking website of India.</p><br>
+            <ul class="list-inline"  style="display: flex;margin-left:42%;">
+                <li class="list-inline-item"><a href="{% url 'homepage' %}">HOME</a></li>
+                <li class="list-inline-item"><a href="{% url 'gallerypage' %}">GALLERY</a></li>
+            </ul>
+            <p class="copyright"><a href="{% url 'homepage' %}">Ticket4Movies </a>© 2023</p>
+        </footer>
+    </div>
+
+
+
+</body>
+
+</html>

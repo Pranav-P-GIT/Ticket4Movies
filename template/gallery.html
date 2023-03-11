@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        background-color: whitesmoke;
+    }
+    
+    
+    .main{
+        width:100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    h2{
+        color:red;
+        text-align: center;
+        margin: 20px;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
+        padding: 10px;
+        background-color:black;
+        color: #fff;
+    }
+    
+    .nav-links a {
+        color: #fff;
+    }
+    
+    .logo {
+        font-size: 32px;
+    }
+    
+    .menu {
+        display: flex;
+        gap: 1em;
+        font-size: 18px;
+    }
+    
+    .menu li:hover {
+        border-radius: 5px;
+        transition: 0.3s ease;
+    }
+    
+    .menu li {
+        padding: 5px 14px;
+    }
+
+    .images{
+        width: 50%;
+        padding: 2px;
+    }
+
+    
+.footer-basic {
+    padding: 40px 0;
+    background-color: black;
+    color: white;
+}
+
+.footer-basic ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.footer-basic li {
+    padding: 0 10px;
+}
+
+.footer-basic ul a {
+    color: white;
+    text-decoration: none;
+}
+
+
+.footer-basic .social {
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.footer-basic .social>a {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #000000;
+    margin: 0 8px;
+    color: inherit;
+}
+
+.footer-basic .imge{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+}
+
+
+
+
+.footer-basic .copyright {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 0;
+}
+
+.footer-basic .copyright>a{
+    color: dodgerblue;
+    text-decoration: none;
+}
+
+
+.list-inline{
+    display: flex;
+    margin-left: 46.5%;
+}
+
+
+.list-inline-item{
+    font-size: 30px;
+}
+
+    
+</style>
+<body>
+    <nav class="navbar">
+        <div class="logo">Ticket4Movies</div>
+        <ul class="nav-links">
+            <div class="menu">
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logoutpage' %}">LOGOUT</a></li>
+                <li><a href="{% url 'homepage' %}">HOME</a></li>
+                {% else %}
+                <li><a href="{% url 'loginpage' %}">LOG IN</a></li>
+                <li><a href="{% url 'registerpage' %}">SIGN UP</a></li>
+                <li><a href="{% url 'homepage' %}">HOME</a></li>
+                {% endif %}
+            </div>
+        </ul>
+    </nav>
+
+    <h2>GALLERY</h2>
+    <div class="main">
+        <div class="images">
+            <img style="width:100%;" src="{% static 'img/pexels-vitalina-3807242.jpg' %}" alt="">
+        </div>
+        <div class="images">
+            <img style="width:100%;" src="{% static 'img/pexels-henry-&-co-3137890.jpg' %}" alt="">
+        </div>
+        
+        <div class="images">
+            <img style="width:100%;" src="{% static 'img/pexels-martin-lopez-1117132.jpg' %}" alt="">
+        </div>
+        
+        <div class="images">
+            <img style="width:100%;" src="{% static 'img/pexels-pavel-danilyuk-7234389.jpg' %}" alt="">
+        </div>
+        <div class="images">
+            <img style="width:100%;" src="{% static 'img/pexels-tima-miroshnichenko-7991318.jpg' %}" alt="">
+        </div>
+        <div class="images">
+            <img style="width:100%;" src="{% static 'img/pexels-tima-miroshnichenko-7991579.jpg' %}" alt="">
+        </div>
+        
+    </div>
+    
+    <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <h4>FOLLOW US</h4><br>
+                <a href="#">
+                    <i class="icon ion-social-instagram">
+                        <img class="imge" src="{% static 'img/ig-instagram-icon.png' %}" alt="">
+                    </i>
+                </a>
+                <a href="#">
+                    <i class="icon ion-social-snapchat">
+                        <img class="imge" src="{% static 'img/wa-whatsapp-icon.png' %}" alt="">
+                    </i>
+                </a>
+                <a href="#">
+                    <i class="icon ion-social-twitter">
+                        <img class="imge" src="{% static 'img/twitter-app-icon.png' %}" alt="">
+                    </i>
+                </a>
+                <a href="#">
+                    <i class="icon ion-social-facebook">
+                        <img class="imge" src="{% static 'img/facebook-app-icon.png' %}" alt="">
+                    </i>
+                </a>
+            </div>
+            <p style="text-align: center;">Tickets4Movies | one of the prominent film festival booking website of India.</p><br>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="{% url 'homepage' %}">HOME</a></li>
+            </ul>
+            <p class="copyright"><a href="#">Ticket4Movies </a>© 2023</p>
+        </footer>
+    </div>
+
+</body>
+</html>

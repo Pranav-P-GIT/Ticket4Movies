@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoviePage</title>
+</head>
+<link rel="stylesheet" href="{% static 'css/moviepage.css' %}">
+
+
+<style>
+
+    .seat{
+        background-color:whitesmoke;
+        width:250px;
+        height:550px;
+        margin-top:2.2%;
+        text-align:center;
+        padding: 2%;
+        box-shadow: none;
+    
+    }
+    
+    
+    .seat button{
+        background-color: rgb(198, 2, 2);
+        font-size: larger;
+        margin-top: 100%;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        outline: none;
+        opacity: 0.8;
+        cursor: pointer;
+    }
+    
+    .seat button:hover{
+        opacity: 1;
+    }
+
+
+
+</style>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">Ticket4Movies</div>
+        <ul class="nav-links">
+            <div class="menu">
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'logoutpage' %}">LOGOUT</a></li>
+                <li><a href="{% url 'homepage' %}">HOME</a></li>
+                {% endif %}
+            </div>
+        </ul>
+    </nav>
+    {% for i in data %}
+    <div class="movie">
+        <div class="image">
+            <img style="width: 400px;height:550px;" src="{{i.img.url}}" alt="">
+        </div>
+        <div class="info">
+            
+            <h1>{{i.name}}</h1><br>
+            <h2>{{i.star}}</h2><br>
+            <h2>{{i.dimensional}}</h2><br>
+            <h2>{{i.language}}</h2><br>
+            <h2>{{i.duration}} {{i.genre}}<h2><br>
+                    <h2>{{i.date}}</h2><br>
+                    <h2>{{i.time}}</h2>
+        </div>
+        {% endfor %}
+        <div class="seat">
+            {% for i in seat %}
+            {% if i.available <= '0' %}
+            <h1 style="color: red;" >FULLY BOOKED</h1><br><br>
+            <h2>SORRY WE ARE FULL</h2>
+            {% else %}
+                <form action="{% url 'bookingpage' %}?id={{i.id}}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Check Availability</button>
+                </form>
+                {% endif %}
+    {% endfor %}
+            </div>
+    </div>
+    
+    
+    <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <h4>FOLLOW US</h4><br>
+                <a href="#">
+                    <i class="icon ion-social-instagram">
+                        <img class="imge" src="{% static 'img/ig-instagram-icon.png' %}" alt="">
+                    </i>
+                </a>
+                <a href="#">
+                    <i class="icon ion-social-snapchat">
+                        <img class="imge" src="{% static 'img/wa-whatsapp-icon.png' %}" alt="">
+                    </i>
+                </a>
+                <a href="#">
+                    <i class="icon ion-social-twitter">
+                        <img class="imge" src="{% static 'img/twitter-app-icon.png' %}" alt="">
+                    </i>
+                </a>
+                <a href="#">
+                    <i class="icon ion-social-facebook">
+                        <img class="imge" src="{% static 'img/facebook-app-icon.png' %}" alt="">
+                    </i>
+                </a>
+            </div>
+            <p style="text-align: center;">Tickets4Movies | one of the prominent film festival booking website of India.</p><br>
+            <ul class="list-inline"  style="display: flex;margin-left:42%;">
+                <li class="list-inline-item"><a href="{% url 'homepage' %}">HOME</a></li>
+                <li class="list-inline-item"><a href="{% url 'gallerypage' %}">GALLERY</a></li>
+            </ul>
+            <p class="copyright"><a href="{% url 'homepage' %}">Ticket4Movies </a>© 2023</p>
+        </footer>
+
+</body>
+
+</html>
